@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { supabase } from '@/utils/supabase';
 import { User, UserProfile } from '@/types/user';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
@@ -29,13 +28,12 @@ class AuthService {
   async fetchUserById(userId: string | null): Promise<UserProfile | null> {
     if (!userId) return null;
     try {
-      const { data, error } = await supabase
-        .from('users')
-        .select('id, email, name, gender, department, year, connection_type')
-        .eq('id', parseInt(userId))
-        .single();
-      if (error) throw error;
-      return data;
+      const response = await axios.get(`${API_URL}/users/${userId}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      return response.data;
     } catch (error) {
       console.error('Error fetching user:', error);
       return null;

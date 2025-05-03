@@ -1,7 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { useToast } from '@/components/ui/use-toast';
-import { supabase } from '@/utils/supabase';
 import { authService } from '@/lib/auth';
 import { User, UserProfile } from '@/types/user';
 import { useNavigate } from 'react-router-dom';
@@ -50,21 +49,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       setIsLoading(true);
       const { token, user_id } = await authService.login(email, password);
-      const { data, error } = await supabase
-        .from('users')
-        .select('id, email, name, gender, department, year, connection_type')
-        .eq('id', user_id)
-        .single();
-
-      if (error) throw error;
-
-      setUser(data);
-      setIsAuthenticated(true);
-      toast({
-        title: 'Login successful',
-        description: `Welcome back, ${data.name}!`,
-      });
-      navigate('/recommendations');
+      const currentUser = await authService.getCurrentUser();
+      
+      if (currentUser) {
+        setUser(currentUser);
+        setIsAuthenticated(true);
+        toast({
+          title: 'Login successful',
+          description: `Welcome back, ${currentUser.name}!`,
+        });
+        navigate('/recommendations');
+      } else {
+        throw new Error('Failed to fetch user data');
+      }
     } catch (error: any) {
       const message = error.message || 'Login failed';
       toast({
