@@ -56,7 +56,7 @@ const learningOptions = [
 
 const departmentOptions = ["BTech", "BCA", "MCA"];
 
-const yearOptions = ["1st", "2nd", "3rd", "4th"];
+const yearOptions = ["1", "2", "3", "4"];
 
 const connectionOptions = [
   { value: "Study Partner", label: "Study Partner" },
