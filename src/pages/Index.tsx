@@ -13,10 +13,10 @@ const Index = () => {
       <div className="min-h-[80vh] flex flex-col items-center justify-center gradient-background rounded-xl py-16 px-4">
         <div className="text-center max-w-3xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-amiconnect-primary">
-            AmiConnect AI by Rekhi Foundation, Amity Centre Of Happiness
+            AmiConnect
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-700">
-          Discover Your Tribe at Amity University: Collaborate, Connect, and Co-Create with Students Who Share Your Passions, Skills, and Learning Ambitions.
+            Connect with Amity University students based on shared interests, skills, and learning goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {isAuthenticated ? (

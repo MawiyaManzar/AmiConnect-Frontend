@@ -56,7 +56,7 @@ const learningOptions = [
 
 const departmentOptions = ["BTech", "BCA", "MCA"];
 
-const yearOptions = ["1", "2", "3", "4"];
+const yearOptions = ["1st", "2nd", "3rd", "4th"];
 
 const connectionOptions = [
   { value: "Study Partner", label: "Study Partner" },
@@ -82,7 +82,7 @@ const signupSchema = z.object({
   currentSkills: z.array(z.string()),
   learningSkills: z.array(z.string()),
   department: z.string().min(1, { message: "Department is required" }),
-  year: z.coerce.number().min(1, { message: "Year is required" }),
+  year: z.string().min(1, { message: "Year is required" }),
   connectionType: z.enum([
     "Study Partner",
     "Project Collaboration",
@@ -110,7 +110,7 @@ const Signup = () => {
       currentSkills: [],
       learningSkills: [],
       department: "",
-      year: 1,
+      year: "",
       connectionType: "General",
     },
   });
@@ -128,7 +128,7 @@ const Signup = () => {
         skills: data.currentSkills,           // ← note rename
         learning_goals: data.learningSkills,  // ← note rename
         department: data.department,
-        year: data.year,
+        year: Number(data.year),
         connection_type: data.connectionType, // ← snake_case
       };
       await register(userData);
@@ -215,8 +215,8 @@ const Signup = () => {
                       <FormItem>
                         <FormLabel>Gender</FormLabel>
                         <Select
-                          onValueChange={(val) => field.onChange(Number(val))}
-                          value={String(field.value)}
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
                         >
                           <FormControl>
                             <SelectTrigger>
@@ -275,7 +275,7 @@ const Signup = () => {
                           <FormLabel>Year</FormLabel>
                           <Select
                             onValueChange={field.onChange}
-                            defaultValue={String(field.value)}
+                            defaultValue={field.value}
                           >
                             <FormControl>
                               <SelectTrigger>
@@ -284,7 +284,7 @@ const Signup = () => {
                             </FormControl>
                             <SelectContent>
                               {yearOptions.map((year) => (
-                                <SelectItem key={String(year)} value={String(year)}>
+                                <SelectItem key={year} value={year}>
                                   {year}
                                 </SelectItem>
                               ))}
