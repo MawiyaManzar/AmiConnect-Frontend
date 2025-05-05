@@ -1,10 +1,17 @@
 # AmiConnect
+Visit the site-: https://amiconnect.vercel.app/
 
 AmiConnect is a web application designed to foster meaningful connections among Amity University students by matching them based on shared interests, skills, and learning goals. Built for the Amity Centre for Happiness, it aims to enhance social well-being and emotional intelligence through peer collaboration, aligning with the centre's mission to build a resilient, joyful, and compassionate society.
 
 ## Features
 
 ### Current Features
+![image](https://github.com/user-attachments/assets/b99ea8af-a003-4cac-a1e8-d91f31acf04a)
+![image](https://github.com/user-attachments/assets/4d35190a-e518-40ba-9720-31acb7cffdc8)
+![image](https://github.com/user-attachments/assets/bd715dbf-1af4-498e-8455-39e1c0b0d000)
+
+
+
 
 - **User Registration (Signup):**
   - Students register with their Amity email (%@s.amity.edu), name, gender, department, year, connection type (e.g., Study Partner, Project Collaboration), interests, skills, and learning goals.
